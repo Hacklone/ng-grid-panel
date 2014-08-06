@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="ngGridPanelExample">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ngGridPanel Example</title>
+
+    <link href="ng-grid-panel.css" rel="stylesheet" type="text/css">
+
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+
+    <script src="ng-grid-panel.js"></script>
+
+    <script>
+        angular.module('ngGridPanelExample', ['ngGridPanel'])
+                .controller('exampleController', function($scope) {
+                    $scope.items = [];
+
+                    for(var i = 0; i < 150; i++) {
+                        $scope.items.push({
+                            name: 'item_' + i
+                        });
+                    }
+                });
+    </script>
+</head>
+<body ng-controller="exampleController">
+    <grid-panel repeat="item in items">
+        <grid-panel-item>
+            <div>
+                Grid item template
+                {{ item.name }}
+            </div>
+        </grid-panel-item>
+        <grid-panel-content>
+            <div>
+                Opening panel template
+                Opened: {{ item.name }}
+            </div>
+        </grid-panel-content>
+    </grid-panel>
+</body>
+</html>

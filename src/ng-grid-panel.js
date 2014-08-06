@@ -4,7 +4,7 @@
  * License: MIT
  */
 angular.module('ngGridPanel', ['ngAnimate'])
-    .directive('gridPanel', ['$animate', '$compile', '$window', '$document', function($animate, $compile, $window, $document) {
+    .directive('gridPanel', function($animate, $compile, $window, $document) {
             return {
                 restrict: 'AE',
                 compile: function(tElement, tAttr) {
@@ -172,4 +172,4 @@ angular.module('ngGridPanel', ['ngAnimate'])
                     }
                 }
             };
-        }]);
+        });
