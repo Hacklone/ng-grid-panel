@@ -3,6 +3,9 @@ ngGridPanel
 
 An easy to use grid repeating module with opening panel.
 
+#Warning
+> This project is still in experimental phase
+
 #How To Use
 
 ##Include ngGridPanel
