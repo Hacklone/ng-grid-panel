@@ -1,9 +1,10 @@
 {
-    "name": "ngGridPanel",
-    "version": "0.0.1",
+    "name": "ng-grid-panel",
+    "version": "0.0.2",
     "main": "./ng-grid-panel.js",
     "dependencies": {
         "angular": ">= 1.2.21",
         "angular-animate": ">= 1.2.21"
-    }
+    },
+    "homepage": "https://github.com/Hacklone/ng-grid-panel"
 }
