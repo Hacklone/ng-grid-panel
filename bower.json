@@ -1,0 +1,9 @@
+{
+    "name": "ngGridPanel",
+    "version": "0.0.1",
+    "main": "./ng-grid-panel.js",
+    "dependencies": {
+        "angular": ">= 1.2.21",
+        "angular-animate": ">= 1.2.21"
+    }
+}
