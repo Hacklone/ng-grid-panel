@@ -8,6 +8,9 @@ angular.module('ngGridPanel', ['ngAnimate'])
             return {
                 restrict: 'AE',
                 compile: function(tElement, tAttr) {
+                    var windowElement = angular.element($window);
+                    var htmlAndBodyElement = angular.element($document).find('html, body');
+
                     var gridItemTemplate = getGridItemTemplate();
                     var gridPanelTemplate = getGridPanelTemplate();
 
@@ -29,10 +32,6 @@ angular.module('ngGridPanel', ['ngAnimate'])
 
                     return {
                         pre: function($scope, $element) {
-                            angular.extend($scope, {
-                                onGridItemClick: _onGridItemClick
-                            });
-
                             _init();
                             function _init() {
                                 $scope.$watchCollection(collectionName, _onItemsChanged);
@@ -81,6 +80,8 @@ angular.module('ngGridPanel', ['ngAnimate'])
                                 else {
                                     addPanel();
                                 }
+
+                                updateTriangle();
 
                                 scrollToPanel();
 
@@ -136,14 +137,23 @@ angular.module('ngGridPanel', ['ngAnimate'])
                                         return;
                                     }
 
-                                    var windowElement = angular.element($window);
                                     var gridItemOffset = gridItem.offset().top;
 
                                     if(gridItemOffset > (windowElement.scrollTop() + (windowElement.height() / 2))) {
-                                        angular.element($document).find('html, body').animate({
+                                        htmlAndBodyElement.animate({
                                             scrollTop: gridItemOffset - gridItem.outerHeight(true)
                                         }, 500);
                                     }
+                                }
+
+                                function updateTriangle() {
+                                    if(!panel) {
+                                        return;
+                                    }
+
+                                    panel.find('.triangle').css({
+                                        left: gridItem.position().left + (gridItem.width() / 2)
+                                    });
                                 }
                             }
                         }
@@ -165,8 +175,8 @@ angular.module('ngGridPanel', ['ngAnimate'])
                         }
 
                         gridPanelTemplate
-                            .before()
-                            .prepend(angular.element('<div class="close-x">'));
+                            .prepend(angular.element('<div class="close-x">'))
+                            .prepend(angular.element('<div class="triangle">'));
 
                         return gridPanelTemplate;
                     }
