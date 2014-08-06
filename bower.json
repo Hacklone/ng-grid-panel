@@ -1,6 +1,6 @@
 {
     "name": "ng-grid-panel",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "main": "./ng-grid-panel.js",
     "dependencies": {
         "jquery": ">= 1.6.2",
@@ -11,6 +11,7 @@
     "ignore": [
         "example.html",
         "package.json",
+        "gulpfile.js",
         "src"
     ]
 }
