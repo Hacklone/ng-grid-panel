@@ -49,11 +49,11 @@ angular.module('ngGridPanel', ['ngAnimate'])
 
                                     var itemElement = gridItemTemplate.clone();
 
-                                    itemElement.addClass('grid-panel-item-' + i).on('click', function(i, item, maxIndex) {
+                                    itemElement.addClass('grid-panel-item-' + i).on('click', function(i, item) {
                                         return function() {
-                                            _onGridItemClick(i, item, maxIndex);
+                                            _onGridItemClick(i, item);
                                         };
-                                    }(i, item, len));
+                                    }(i, item));
 
                                     $animate.enter(itemElement, $element);
 
@@ -61,20 +61,13 @@ angular.module('ngGridPanel', ['ngAnimate'])
                                 }
                             }
 
-                            function _onGridItemClick(index, item, itemsLength) {
+                            function _onGridItemClick(index, item) {
                                 var gridItem = $element.find('.grid-panel-item-' + index);
 
-                                var gridItemCountInRow = getGridItemCountInRow(gridItem);
+                                var lastGridItem = getLastGridItem(gridItem);
+                                var lastGridItemClass = lastGridItem.attr('class');
 
-                                var gridItemPositionInRow = index % gridItemCountInRow;
-                                var lastGridItemIndex = gridItemCountInRow - gridItemPositionInRow - 1 + index;
-
-                                if(lastGridItemIndex >= itemsLength) {
-                                    lastGridItemIndex = itemsLength - 1;
-                                }
-
-
-                                if(panel && panelOpenedAfter === lastGridItemIndex) {
+                                if(panel && panelOpenedAfter === lastGridItemClass) {
                                     updatePanel();
                                 }
                                 else {
@@ -85,18 +78,21 @@ angular.module('ngGridPanel', ['ngAnimate'])
 
                                 scrollToPanel();
 
-                                function getGridItemCountInRow(gridItem) {
-                                    var elementWidth = $element.innerWidth();
+                                function getLastGridItem(gridItem) {
+                                    var current = gridItem;
+                                    var next = gridItem.next();
 
-                                    var gridItemOuterWidth = gridItem.outerWidth(true);
+                                    while(next && current.offset().top === next.offset().top) {
+                                        current = next;
 
-                                    return Math.floor(elementWidth / gridItemOuterWidth);
+                                        next = current.next();
+                                    }
+
+                                    return current;
                                 }
 
                                 function addPanel() {
-                                    panelOpenedAfter = lastGridItemIndex;
-
-                                    var lastGridItemInRow = $element.find('.grid-panel-item-' + lastGridItemIndex);
+                                    panelOpenedAfter = lastGridItemClass;
 
                                     closePanel();
 
@@ -107,7 +103,7 @@ angular.module('ngGridPanel', ['ngAnimate'])
 
                                     panel.find('.close-x').on('click', closePanel);
 
-                                    $animate.enter(panel, null, lastGridItemInRow);
+                                    $animate.enter(panel, null, lastGridItem);
 
                                     $compile(panel)(panelScope);
                                     panelScope.$digest();
