@@ -8,7 +8,6 @@ grid-panel .grid-panel-item,
 .grid-panel .grid-panel-item {
   display: inline-block;
   vertical-align: top;
-  margin: 10px;
   cursor: pointer;
 }
 grid-panel grid-panel-content,
@@ -18,10 +17,9 @@ grid-panel .grid-panel-content,
   display: block;
   color: #fff;
   background-color: #444444;
-  border-radius: 5px;
   padding: 10px;
-  margin-top: 5px;
-  min-height: 300px;
+  margin-top: 10px;
+  min-height: 50px;
 }
 grid-panel grid-panel-content .triangle,
 .grid-panel grid-panel-content .triangle,
@@ -83,8 +81,8 @@ grid-panel .grid-panel-content.ng-leave,
   0% {
     height: 100%;
   }
-  30% {
-    height: 30%;
+  40% {
+    height: 50%;
   }
   100% {
     min-height: 0;

@@ -4,9 +4,13 @@
  * License: MIT
  */
 angular.module('ngGridPanel', ['ngAnimate'])
-    .directive('gridPanel', ['$animate', '$compile', '$window', '$document', function($animate, $compile, $window, $document) {
+    .directive('gridPanel', ['$animate', '$compile', '$window', '$document', '$timeout', function($animate, $compile, $window, $document, $timeout) {
             return {
                 restrict: 'AE',
+                scope: {
+                    onPanelOpen: '&',
+                    onPanelClose: '&'
+                },
                 compile: function(tElement, tAttr) {
                     var windowElement = angular.element($window);
                     var htmlAndBodyElement = angular.element($document).find('html, body');
@@ -34,7 +38,7 @@ angular.module('ngGridPanel', ['ngAnimate'])
                         pre: function($scope, $element) {
                             _init();
                             function _init() {
-                                $scope.$watchCollection(collectionName, _onItemsChanged);
+                                $scope.$parent.$watchCollection(collectionName, _onItemsChanged);
                             }
 
                             function _onItemsChanged(items) {
@@ -82,7 +86,7 @@ angular.module('ngGridPanel', ['ngAnimate'])
                                     var current = gridItem;
                                     var next = gridItem.next();
 
-                                    while(next && current.offset().top === next.offset().top) {
+                                    while(next.length && current.offset().top === next.offset().top) {
                                         current = next;
 
                                         next = current.next();
@@ -94,6 +98,8 @@ angular.module('ngGridPanel', ['ngAnimate'])
                                 function addPanel() {
                                     panelOpenedAfter = lastGridItemClass;
 
+                                    var isNewPanel = !!panel;
+
                                     closePanel();
 
                                     panelScope = $scope.$new();
@@ -101,12 +107,26 @@ angular.module('ngGridPanel', ['ngAnimate'])
 
                                     panel = gridPanelTemplate.clone();
 
-                                    panel.find('.close-x').on('click', closePanel);
+                                    panel.find('.close-x').on('click', function(item) {
+                                        return function() {
+                                            closePanel();
+
+                                            $scope.onPanelClose({
+                                                item: item
+                                            });
+                                        };
+                                    }(item));
 
                                     $animate.enter(panel, null, lastGridItem);
 
                                     $compile(panel)(panelScope);
                                     panelScope.$digest();
+
+                                    if(isNewPanel) {
+                                        $scope.onPanelOpen({
+                                            item: item
+                                        });
+                                    }
                                 }
 
                                 function updatePanel() {
@@ -133,11 +153,17 @@ angular.module('ngGridPanel', ['ngAnimate'])
                                         return;
                                     }
 
-                                    var gridItemOffset = gridItem.offset().top;
+                                    var windowBottom = windowElement.scrollTop() + (windowElement.height() / 2);
 
-                                    if(gridItemOffset > (windowElement.scrollTop() + (windowElement.height() / 2))) {
+                                    if(panel.offset().top > windowBottom) {
+                                        $timeout(scrollAnimate, 350);
+                                    }
+
+                                    function scrollAnimate() {
+                                        var panelOffset = panel.offset().top;
+
                                         htmlAndBodyElement.animate({
-                                            scrollTop: gridItemOffset - gridItem.outerHeight(true)
+                                            scrollTop: panelOffset - (gridItem.outerHeight(true) * 2)
                                         }, 500);
                                     }
                                 }
