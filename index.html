@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="description" content="ngGridPanel : An easy to use grid repeating module with opening panel.">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>ngGridPanel</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/Hacklone/ng-grid-panel">View on GitHub</a>
+
+          <h1 id="project_title">ngGridPanel</h1>
+          <h2 id="project_tagline">An easy to use grid repeating module with opening panel.</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/Hacklone/ng-grid-panel/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/Hacklone/ng-grid-panel/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="nggridpanel" class="anchor" href="#nggridpanel"><span class="octicon octicon-link"></span></a>ngGridPanel</h1>
+
+<p>An easy to use grid repeating module with opening panel.</p>
+
+<h1>
+<a name="warning" class="anchor" href="#warning"><span class="octicon octicon-link"></span></a>Warning</h1>
+
+<blockquote>
+<p>This project is still in experimental phase</p>
+</blockquote>
+
+<h1>
+<a name="how-to-use" class="anchor" href="#how-to-use"><span class="octicon octicon-link"></span></a>How To Use</h1>
+
+<h2>
+<a name="include-nggridpanel" class="anchor" href="#include-nggridpanel"><span class="octicon octicon-link"></span></a>Include ngGridPanel</h2>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">'YourModule'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'ngGridPanel'</span><span class="p">]);</span>
+</pre></div>
+
+<h2>
+<a name="add-html" class="anchor" href="#add-html"><span class="octicon octicon-link"></span></a>Add html</h2>
+
+<div class="highlight highlight-html"><pre><span class="nt">&lt;grid-panel</span> <span class="na">repeat=</span><span class="s">"item in items"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;grid-panel-item&gt;</span>
+        <span class="nt">&lt;div&gt;</span>
+            Grid item template
+            {{ item.name }}
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/grid-panel-item&gt;</span>
+    <span class="nt">&lt;grid-panel-content&gt;</span>
+        <span class="nt">&lt;div&gt;</span>
+            Opening panel template
+            Opened: {{ item.name }}
+        <span class="nt">&lt;/div&gt;</span>
+    <span class="nt">&lt;/grid-panel-content&gt;</span>
+<span class="nt">&lt;grid-panel&gt;</span>
+</pre></div>
+
+<h1>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h1>
+
+<blockquote>
+<p>The MIT License (MIT)</p>
+
+<p>Copyright (c) 2014 Hacklone
+<a href="https://github.com/Hacklone">https://github.com/Hacklone</a></p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.</p>
+</blockquote>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">ngGridPanel maintained by <a href="https://github.com/Hacklone">Hacklone</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
