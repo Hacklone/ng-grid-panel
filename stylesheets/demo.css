@@ -1,0 +1,43 @@
+.demo-item {
+    height: 150px;
+    width: 150px;
+
+    margin: 10px;
+
+    color: #ffffff;
+    font-weight: bold;
+
+    text-align: center;
+
+    border-radius: 5px;
+}
+
+.demo-item img {
+    outline: 0;
+    border: 0;
+    box-shadow: none;
+}
+
+.demo-panel {
+    text-align: left;
+    padding-left: 40px;
+    box-sizing: border-box;
+}
+
+.demo-panel h3 {
+    color: #ffffff;
+}
+
+#header_wrap .inner {
+    padding: 10px 10px 30px 10px;
+}
+
+#main_content_wrap section {
+    margin-top: 20px;
+
+    text-align: center;
+}
+
+grid-panel grid-panel-content .close-x {
+    font-size: 30px;
+}
