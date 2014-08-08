@@ -3,10 +3,19 @@ ngGridPanel
 
 An easy to use grid repeating module with opening panel.
 
-#Warning
-> This project is still in experimental phase
+#[Demo](http://hacklone.github.io/ng-grid-panel/)
 
 #How To Use
+
+##Install
+```bower install ng-grid-panel```
+
+##Include Script and Style
+```html
+<link href="bower_components/ng-grid-panel/ng-grid-panel.min.css" rel="stylesheet" type="text/css">
+
+<script src="bower_components/ng-grid-panel/ng-grid-panel.min.js"></script>
+```
 
 ##Include ngGridPanel
 ```javascript
@@ -15,7 +24,8 @@ angular.module('YourModule', ['ngGridPanel']);
 
 ##Add html
 ```html
-<grid-panel repeat="item in items">
+<grid-panel repeat="item in items" 
+            on-panel-opened="panelIsOpened(item)" on-panel-closed="panelIsClosed(item)">
     <grid-panel-item>
         <div>
             Grid item template

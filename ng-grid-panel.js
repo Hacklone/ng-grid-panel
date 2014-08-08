@@ -8,8 +8,8 @@ angular.module('ngGridPanel', ['ngAnimate'])
             return {
                 restrict: 'AE',
                 scope: {
-                    onPanelOpen: '&',
-                    onPanelClose: '&'
+                    onPanelOpened: '&',
+                    onPanelClosed: '&'
                 },
                 compile: function(tElement, tAttr) {
                     var windowElement = angular.element($window);
@@ -111,7 +111,7 @@ angular.module('ngGridPanel', ['ngAnimate'])
                                         return function() {
                                             closePanel();
 
-                                            $scope.onPanelClose({
+                                            $scope.onPanelClosed({
                                                 item: item
                                             });
                                         };
@@ -123,7 +123,7 @@ angular.module('ngGridPanel', ['ngAnimate'])
                                     panelScope.$digest();
 
                                     if(isNewPanel) {
-                                        $scope.onPanelOpen({
+                                        $scope.onPanelOpened({
                                             item: item
                                         });
                                     }
