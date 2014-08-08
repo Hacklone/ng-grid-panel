@@ -153,18 +153,18 @@ angular.module('ngGridPanel', ['ngAnimate'])
                                         return;
                                     }
 
-                                    var windowBottom = windowElement.scrollTop() + (windowElement.height() / 2);
-
-                                    if(panel.offset().top > windowBottom) {
-                                        $timeout(scrollAnimate, 350);
-                                    }
+                                    $timeout(scrollAnimate, 350);
 
                                     function scrollAnimate() {
                                         var panelOffset = panel.offset().top;
 
-                                        htmlAndBodyElement.animate({
-                                            scrollTop: panelOffset - (gridItem.outerHeight(true) * 2)
-                                        }, 500);
+                                        var windowBottom = windowElement.scrollTop() + (windowElement.height() / 2);
+
+                                        if(panelOffset > windowBottom) {
+                                            htmlAndBodyElement.animate({
+                                                scrollTop: panelOffset - (gridItem.outerHeight(true) * 2)
+                                            }, 500);
+                                        }
                                     }
                                 }
 
