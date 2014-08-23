@@ -38,7 +38,7 @@ angular.module('YourModule', ['ngGridPanel']);
             Opened: {{ item.name }}
         </div>
     </grid-panel-content>
-<grid-panel>
+</grid-panel>
 ```
 
 #License
